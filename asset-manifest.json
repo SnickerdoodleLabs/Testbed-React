@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/Testbed-React/static/css/main.073c9b0a.css",
-    "main.js": "/Testbed-React/static/js/main.6b17d19b.js",
-    "static/js/208.16728c0f.chunk.js": "/Testbed-React/static/js/208.16728c0f.chunk.js",
-    "static/js/180.5f083713.chunk.js": "/Testbed-React/static/js/180.5f083713.chunk.js",
-    "static/js/631.242cb648.chunk.js": "/Testbed-React/static/js/631.242cb648.chunk.js",
-    "static/js/409.167ae1fa.chunk.js": "/Testbed-React/static/js/409.167ae1fa.chunk.js",
-    "static/js/787.081fdbd0.chunk.js": "/Testbed-React/static/js/787.081fdbd0.chunk.js",
-    "static/js/774.e82ece61.chunk.js": "/Testbed-React/static/js/774.e82ece61.chunk.js",
-    "static/js/315.347357c6.chunk.js": "/Testbed-React/static/js/315.347357c6.chunk.js",
-    "static/js/805.86a12f75.chunk.js": "/Testbed-React/static/js/805.86a12f75.chunk.js",
-    "static/media/snickerdoodle_logo.png": "/Testbed-React/static/media/snickerdoodle_logo.27f3838debb33a1fb7c2.png",
-    "index.html": "/Testbed-React/index.html",
-    "main.073c9b0a.css.map": "/Testbed-React/static/css/main.073c9b0a.css.map",
-    "main.6b17d19b.js.map": "/Testbed-React/static/js/main.6b17d19b.js.map",
-    "208.16728c0f.chunk.js.map": "/Testbed-React/static/js/208.16728c0f.chunk.js.map",
-    "180.5f083713.chunk.js.map": "/Testbed-React/static/js/180.5f083713.chunk.js.map",
-    "631.242cb648.chunk.js.map": "/Testbed-React/static/js/631.242cb648.chunk.js.map",
-    "409.167ae1fa.chunk.js.map": "/Testbed-React/static/js/409.167ae1fa.chunk.js.map",
-    "787.081fdbd0.chunk.js.map": "/Testbed-React/static/js/787.081fdbd0.chunk.js.map",
-    "774.e82ece61.chunk.js.map": "/Testbed-React/static/js/774.e82ece61.chunk.js.map",
-    "315.347357c6.chunk.js.map": "/Testbed-React/static/js/315.347357c6.chunk.js.map",
-    "805.86a12f75.chunk.js.map": "/Testbed-React/static/js/805.86a12f75.chunk.js.map"
+    "main.css": "/static/css/main.073c9b0a.css",
+    "main.js": "/static/js/main.77b643c7.js",
+    "static/js/208.16728c0f.chunk.js": "/static/js/208.16728c0f.chunk.js",
+    "static/js/180.5f083713.chunk.js": "/static/js/180.5f083713.chunk.js",
+    "static/js/631.b7a48d75.chunk.js": "/static/js/631.b7a48d75.chunk.js",
+    "static/js/409.167ae1fa.chunk.js": "/static/js/409.167ae1fa.chunk.js",
+    "static/js/787.081fdbd0.chunk.js": "/static/js/787.081fdbd0.chunk.js",
+    "static/js/774.e82ece61.chunk.js": "/static/js/774.e82ece61.chunk.js",
+    "static/js/315.347357c6.chunk.js": "/static/js/315.347357c6.chunk.js",
+    "static/js/805.86a12f75.chunk.js": "/static/js/805.86a12f75.chunk.js",
+    "static/media/snickerdoodle_logo.png": "/static/media/snickerdoodle_logo.27f3838debb33a1fb7c2.png",
+    "index.html": "/index.html",
+    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
+    "main.77b643c7.js.map": "/static/js/main.77b643c7.js.map",
+    "208.16728c0f.chunk.js.map": "/static/js/208.16728c0f.chunk.js.map",
+    "180.5f083713.chunk.js.map": "/static/js/180.5f083713.chunk.js.map",
+    "631.b7a48d75.chunk.js.map": "/static/js/631.b7a48d75.chunk.js.map",
+    "409.167ae1fa.chunk.js.map": "/static/js/409.167ae1fa.chunk.js.map",
+    "787.081fdbd0.chunk.js.map": "/static/js/787.081fdbd0.chunk.js.map",
+    "774.e82ece61.chunk.js.map": "/static/js/774.e82ece61.chunk.js.map",
+    "315.347357c6.chunk.js.map": "/static/js/315.347357c6.chunk.js.map",
+    "805.86a12f75.chunk.js.map": "/static/js/805.86a12f75.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.6b17d19b.js"
+    "static/js/main.77b643c7.js"
   ]
 }
