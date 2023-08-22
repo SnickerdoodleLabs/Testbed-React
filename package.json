@@ -1,7 +1,7 @@
 {
   "name": "testbed-react",
   "version": "0.1.0",
-  "homepage": "https://snickerdoodlelabs.github.io/Testbed-React",
+  "homepage": "https://react.webthree.love",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
