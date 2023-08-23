@@ -35,14 +35,17 @@ if (!process.env.REACT_APP_INFURA_API_KEY) {
 }
 
 const webIntegrationConfig = {
-  primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY,
-  ankrApiKey: process.env.REACT_APP_ANKR_API_KEY,
-  covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY,
-  iframeURL: 'https://iframe.snickerdoodle.com',
+  primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
+  ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
+  covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
+  //iframeURL: 'https://iframe.snickerdoodle.com',
 }
 // -------------------------------------------------------------------------------------
 
 function App() {
+  const ethersSigner = useEthersSigner();
+  const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+  
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
@@ -69,14 +72,16 @@ function AskToSign() {
   })
   const { isConnected } = useAccount()
   const message = "Sign Message";
-  const ethersSigner = useEthersSigner();
-  //const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
 
   if (isConnected) {
     return (
       <div>
         <button onClick={() => signMessage()}>{message}</button>
-        {isSuccess && <div>Signature: {data?.slice(0, 12) + "..." + data?.slice(data.length - 13, data.length - 1)}</div>}
+        {isSuccess &&
+          <div>
+            Signature: {data?.slice(0, 12) + "..." + data?.slice(data.length - 13, data.length - 1)}
+          </div>
+        }
         {isError && <div>Error signing message</div>}
       </div>
     )
