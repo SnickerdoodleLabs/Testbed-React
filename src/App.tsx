@@ -65,7 +65,7 @@ function AskToSign() {
   const { isConnected } = useAccount()
   const message = "Sign Message";
   const ethersSigner = useEthersSigner();
-  //const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+  const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
 
   if (isConnected) {
     return (
