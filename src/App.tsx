@@ -12,7 +12,7 @@ import { SnickerdoodleWebIntegration } from '@snickerdoodlelabs/web-integration'
 import { useEthersSigner } from './ethers';
 import './App.css';
 
-// Wallet Connect Configuration
+// ------------------------- Wallet Connect Configuration ---------------------------
 const chains = [arbitrum, mainnet, polygon, avalanche, avalancheFuji]
 console.log(process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID)
 if (!process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID) {
@@ -27,18 +27,20 @@ const wagmiConfig = createConfig({
   publicClient
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
+// ----------------------------------------------------------------------------------
 
+// ------------------------- Snickerdoodle Configuration ----------------------------
 if (!process.env.REACT_APP_INFURA_API_KEY) {
   throw new Error("You need to provide currently provide an Infura API env variable");
 }
 
-// Snickerdoodle Configuration
 const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY,
   iframeURL: 'https://iframe.snickerdoodle.com',
 }
+// -------------------------------------------------------------------------------------
 
 function App() {
   return (
@@ -46,6 +48,9 @@ function App() {
       <WagmiConfig config={wagmiConfig}>
         <div className="App">
           <header className="App-header">
+            <a className='App-link' href="https://github.com/SnickerdoodleLabs/Testbed-React/tree/main" target='_blank' rel="noopener noreferrer">
+              Snickerdoodle Labs React Testbed
+            </a>
             <img src={snickerdoodle_logo} className="App-logo" alt="logo" />
             <Web3Button />
             <AskToSign />
@@ -65,7 +70,7 @@ function AskToSign() {
   const { isConnected } = useAccount()
   const message = "Sign Message";
   const ethersSigner = useEthersSigner();
-  const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+  //const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
 
   if (isConnected) {
     return (
