@@ -4,7 +4,9 @@
   "homepage": "https://react.webthree.love",
   "private": true,
   "dependencies": {
-    "@snickerdoodlelabs/web-integration": "^0.0.1",
+    "crypto": "npm:crypto-browserify",
+    "stream": "npm:stream-browserify",
+    "@snickerdoodlelabs/web-integration": "^0.0.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,6 +26,12 @@
     "wagmi": "^1.3.10",
     "web-vitals": "^2.1.4"
   },
+  "resolutions": {
+    "@snickerdoodlelabs/objects": "^0.0.72",
+    "@snickerdoodlelabs/common-utils": "^0.0.24",
+    "@snickerdoodlelabs/utils": "^0.0.5"
+  },
+
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

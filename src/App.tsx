@@ -43,8 +43,6 @@ const webIntegrationConfig = {
 // -------------------------------------------------------------------------------------
 
 function App() {
-  const ethersSigner = useEthersSigner();
-  const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
   
   return (
     <>
@@ -67,11 +65,19 @@ function App() {
 }
 
 function AskToSign() {
+ const  ethersSigner  = useEthersSigner()
   const { data, isError, isSuccess, signMessage } = useSignMessage({
     message: 'Hello Snickerdoodle!',
   })
   const { isConnected } = useAccount()
   const message = "Sign Message";
+
+  React.useEffect(() => {
+    if(isConnected){
+    const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+    webIntegration.initialize();
+  }
+  }, [isConnected])
 
   if (isConnected) {
     return (
