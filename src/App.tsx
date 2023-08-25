@@ -73,11 +73,11 @@ function AskToSign() {
   const message = "Sign Message";
 
   React.useEffect(() => {
-    if (isConnected) {
+    if (isConnected && ethersSigner) {
       const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
       webIntegration.initialize();
     }
-  }, [isConnected])
+  }, [isConnected, ethersSigner])
 
   if (isConnected) {
     return (
