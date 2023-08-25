@@ -43,7 +43,7 @@ const webIntegrationConfig = {
 // -------------------------------------------------------------------------------------
 
 function App() {
-  
+
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
@@ -65,7 +65,7 @@ function App() {
 }
 
 function AskToSign() {
- const  ethersSigner  = useEthersSigner()
+  const ethersSigner = useEthersSigner()
   const { data, isError, isSuccess, signMessage } = useSignMessage({
     message: 'Hello Snickerdoodle!',
   })
@@ -73,10 +73,10 @@ function AskToSign() {
   const message = "Sign Message";
 
   React.useEffect(() => {
-    if(isConnected){
-    const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
-    webIntegration.initialize();
-  }
+    if (isConnected) {
+      const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+      webIntegration.initialize();
+    }
   }, [isConnected])
 
   if (isConnected) {
