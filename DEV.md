@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/SnickerdoodleLabs/Testbed-React.git
 cd Testbed-React
-npm install 
+npm install --legacy-peer-deps
 npm start
 ```
 
