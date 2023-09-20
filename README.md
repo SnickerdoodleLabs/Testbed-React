@@ -1,4 +1,4 @@
-![Snickerdoodle Protocol](/snickerdoodle_horizontal_notab.png)
+[![Snickerdoodle Protocol](/snickerdoodle_horizontal_notab.png)](https://snickerdoodle.com)
 
 # Snickerdoodle Testbed for React App Web Integration Package
 
