@@ -35,4 +35,4 @@ You must call the [`.initialize()`](/src/App.tsx#L78) method on the [`Snickerdoo
 ## 4.  Add a TXT Record to Your Application's DNS Settings
 
 You must add a single [TXT Record ](https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/) to your application's DNS Records so that the analytics package will
-trigger the user aggreement popup when a new user connects their wallet to your dApp. See our [official documentation](https://marketing-docs.snickerdoodle.com/integration-instructions/react-apps#3.-add-a-txt-record-to-your-react-apps-domain) for more info. 
+trigger the user agreement popup when a new user connects their wallet to your dApp. See our [official documentation](https://marketing-docs.snickerdoodle.com/integration-instructions/react-apps#3.-add-a-txt-record-to-your-react-apps-domain) for more info. 
