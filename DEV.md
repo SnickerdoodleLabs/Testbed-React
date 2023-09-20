@@ -6,8 +6,11 @@
 git clone https://github.com/SnickerdoodleLabs/Testbed-React.git
 cd Testbed-React
 npm install --legacy-peer-deps
+mv .example.env.local .env.local
 npm start
 ```
+
+**NOTE**: You *must* put a [WalletConnect](https://cloud.walletconnect.com/sign-in) project id in the enviroment file otherwise the app will break at runtime.
 
 ## Pushing to Github Pages
 
