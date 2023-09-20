@@ -4,6 +4,8 @@
 
 This is a minimal [React](https://react.dev/) application for testing the Snickerdoodle analytics web integration package. 
 
+If you want to run this project locally or make your own modification, see [`DEV.md`](/DEV.md).
+
  ## 1. Install Dependencies
 
  You'll need to add [`@snickerdoodlelabs/web-integration`](https://www.npmjs.com/package/@snickerdoodlelabs/web-integration) to your [dependency](/package.json#L7) list:
