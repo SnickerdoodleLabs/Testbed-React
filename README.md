@@ -24,7 +24,7 @@ You must also add [`reflect-metadata`](/package.json#L21) as well.
 
 ## 2. Configuration and Environment Variables
 
-Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own API keys if you have a large userbase so that data requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
+Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
 If you choose you provide your own API keys, put them into a key-value store which will be used as an input for step 3. 
 
