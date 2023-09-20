@@ -2,7 +2,8 @@
 
 # Snickerdoodle Testbed for React App Web Integration Package
 
-This is a minimal [React](https://react.dev/) application for testing the Snickerdoodle analytics web integration package. 
+This is a minimal [React](https://react.dev/) application for demonstrating the Snickerdoodle web-native analytics package. It is mean to be an example guide for adding Snickerdoodle 
+analytics to your own React-based [dApp](https://ethereum.org/en/developers/docs/dapps/). 
 
 If you want to run this project locally or make your own modification, see [`DEV.md`](/DEV.md).
 
