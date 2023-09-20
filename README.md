@@ -26,7 +26,7 @@ You must also add [`reflect-metadata`](/package.json#L21) as well.
 
 Snickerdoodle's web analytics package can fetch web3 data from multiple API providers. Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
-If you choose you provide your own API keys, put them into a key-value store which will be used as an input for step 3. 
+If you choose you provide your own API keys, put them into an object which will be used as an input for step 3. The Typescript interface IConfigOverrides defines this type if you are using TS.
 
 ```
 const webIntegrationConfig = {
@@ -37,7 +37,7 @@ const webIntegrationConfig = {
 }
 ```
 
-**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. 
+**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production.
 
 ## 3. Import and Initialize Snickerdoodle Analytics
 
