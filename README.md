@@ -44,7 +44,8 @@ const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, eth
 webIntegration.initialize();
 ```
 
-**Note**: It is assumed that you are already creating a signer object in your dApp when the user is prompted to connect their wallet. You must pass this signer object to the `SnickerdoodleWebIntegration` object.
+**Note**: It is assumed that you are already creating a signer object in your dApp when the user is prompted to connect their wallet. You must pass this signer object to the `SnickerdoodleWebIntegration` object. This
+repo demonstrates how to do that with WalletConnect.
 
 ## 4.  Add a TXT Record to Your Application's DNS Settings
 
