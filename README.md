@@ -22,15 +22,48 @@ npm install @snickerdoodlelabs/web-integration reflect-metadata
 
 You must also add [`reflect-metadata`](/package.json#L21) as well. 
 
-## 2. Configuration and Environment Variables
+## 2. Configuration of Web3 Data Providers
 
-Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own API keys if you have a large userbase so that data requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
+Snickerdoodle's web analytics package can fetch web3 data from multiple API providers. Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
-**Note** You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. 
+If you choose you provide your own API keys, put them into a key-value store which will be used as an input for step 3. 
 
-## 3. Initialize Snickerdoodle Analytics
+```
+const webIntegrationConfig = {
+  primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
+  ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
+  covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
+  poapApiKey: process.env.REACT_APP_POAP_API_KEY,
+}
+```
+
+**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. 
+
+## 3. Import and Initialize Snickerdoodle Analytics
+
+You must import [`reflect-metadata`](/src/App.tsx#L9) and [`SnickerdoodleWebIntegration`](/src/App.tsx#L10) into your application:
+
+```
+import "reflect-metadata"
+import { SnickerdoodleWebIntegration } from '@snickerdoodlelabs/web-integration';
+```
 
 You must call the [`.initialize()`](/src/App.tsx#L78) method on the [`SnickerdoodleWebIntegration`](/src/App.tsx#L77) object in an appropriate place in your React app. 
+
+```
+const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+webIntegration.initialize();
+```
+
+If you choose to use the default configuration values (i.e. the default API keys) for your deployment, just pass an empty `{}` to the `SnickerdoodleWebIntegration` object:
+
+```
+const webIntegration = new SnickerdoodleWebIntegration({}, ethersSigner);
+webIntegration.initialize();
+```
+
+**Note**: It is assumed that you are already creating a signer object in your dApp when the user is prompted to connect their wallet. You must pass this signer object to the `SnickerdoodleWebIntegration` object. This
+repo demonstrates how to do that with WalletConnect.
 
 ## 4.  Add a TXT Record to Your Application's DNS Settings
 
