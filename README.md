@@ -12,6 +12,11 @@ This is a minimal [React](https://react.dev/) application for testing the Snicke
 ```
 yarn add @snickerdoodlelabs/web-integration
 ```
+or if you are using [NPM](https://www.npmjs.com/)
+
+```
+npm install @snickerdoodlelabs/web-integration
+```
 
 ## Configuration and Environment Variables
 
