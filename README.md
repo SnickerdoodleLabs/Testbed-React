@@ -22,7 +22,7 @@ npm install @snickerdoodlelabs/web-integration reflect-metadata
 
 You must also add [`reflect-metadata`](/package.json#L21) as well. 
 
-## 2. Configuration and Environment Variables
+## 2. Configuration of Web3 Data Providers
 
 Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
