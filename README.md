@@ -26,6 +26,17 @@ You must also add [`reflect-metadata`](/package.json#L21) as well.
 
 Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own API keys if you have a large userbase so that data requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
+If you choose you provide your own API keys, put them into a key-value store which will be used as an input for step 3. 
+
+```
+const webIntegrationConfig = {
+  primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
+  ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
+  covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
+  poapApiKey: process.env.REACT_APP_POAP_API_KEY,
+}
+```
+
 **Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. 
 
 ## 3. Import and Initialize Snickerdoodle Analytics
@@ -41,6 +52,13 @@ You must call the [`.initialize()`](/src/App.tsx#L78) method on the [`Snickerdoo
 
 ```
 const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+webIntegration.initialize();
+```
+
+If you choose to use the default configuration values (i.e. the default API keys) for your deployment, just pass an empty `{}` to the `SnickerdoodleWebIntegration` object:
+
+```
+const webIntegration = new SnickerdoodleWebIntegration({}, ethersSigner);
 webIntegration.initialize();
 ```
 
