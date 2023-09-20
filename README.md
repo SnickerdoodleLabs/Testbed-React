@@ -26,11 +26,25 @@ You must also add [`reflect-metadata`](/package.json#L21) as well.
 
 Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own API keys if you have a large userbase so that data requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
-**Note** You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. 
+**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. 
 
-## 3. Initialize Snickerdoodle Analytics
+## 3. Import and Initialize Snickerdoodle Analytics
+
+You must import [`reflect-metadata`](/src/App.tsx#L9) and [`SnickerdoodleWebIntegration`](/src/App.tsx#L10) into your application:
+
+```
+import "reflect-metadata"
+import { SnickerdoodleWebIntegration } from '@snickerdoodlelabs/web-integration';
+```
 
 You must call the [`.initialize()`](/src/App.tsx#L78) method on the [`SnickerdoodleWebIntegration`](/src/App.tsx#L77) object in an appropriate place in your React app. 
+
+```
+const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
+webIntegration.initialize();
+```
+
+**Note**: It is assumed that you are already creating a signer object in your dApp when the user is prompted to connect their wallet. You must pass this signer object to the `SnickerdoodleWebIntegration` object.
 
 ## 4.  Add a TXT Record to Your Application's DNS Settings
 
