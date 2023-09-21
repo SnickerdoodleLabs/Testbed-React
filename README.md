@@ -26,14 +26,15 @@ You must also add [`reflect-metadata`](/package.json#L21) as well.
 
 Snickerdoodle's web analytics package can fetch web3 data from multiple API providers. Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L37). 
 
-If you choose you provide your own API keys, put them into an object which will be used as an input for step 3. The Typescript interface IConfigOverrides defines this type if you are using TS.
+If you choose you provide your own API keys, put them into an object which will be used as an input for step 3. The Typescript interface IConfigOverrides defines this type if you are using TS. In this full running example, we are using
+environmentment variables that are referrenced with `process.env`. You project may be configured to reference environment variables in a different fashion. 
 
 ```
 const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
-  poapApiKey: process.env.REACT_APP_POAP_API_KEY,
+  poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
 }
 ```
 
