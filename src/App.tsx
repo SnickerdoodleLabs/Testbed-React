@@ -45,14 +45,7 @@ const wagmiConfig = createConfig({
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
 // ----------------------------------------------------------------------------------
 
-// ------------------------- Snickerdoodle Configuration ----------------------------
-if (!process.env.REACT_APP_INFURA_API_KEY) {
-  throw new Error(
-    "You need to provide currently provide an Infura API env variable",
-  );
-}
-
-// if you choose to rely on default API keys, use this config instead. 
+// if you choose to rely on default API keys, use this config instead
 /*
 const webIntegrationConfig = {};
 */
@@ -63,8 +56,8 @@ const webIntegrationConfig = {
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
   poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
 };
-// -------------------------------------------------------------------------------------
 
+// -------------------------------------------------------------------------------------
 
 function App() {
   return (

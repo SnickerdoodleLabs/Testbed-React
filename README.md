@@ -24,10 +24,10 @@ You must also add [`reflect-metadata`](/package.json#L21) as well.
 
 ## 2. Configuration of Web3 Data Providers
 
-Snickerdoodle's web analytics package can fetch web3 data from multiple API providers. Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L60). 
+Snickerdoodle's web analytics package can fetch web3 data from multiple API providers. Checkout [`.example.env.local`](/.example.env.local) for a template environment variable file. Snickerdoodle recommends that you provide your own web3 API keys if you have hundreds of thousands of users or more so that indexer requests are not throttled. You will use these environment variables in your [application](/src/App.tsx#L53). 
 
 If you choose you provide your own API keys, put them into an object which will be used as an input for step 3. The Typescript interface IConfigOverrides defines this type if you are using TS. In this full running example, we are using
-environmentment variables that are referrenced with [`process.env`](https://create-react-app.dev/docs/adding-custom-environment-variables/). You project may be configured to reference environment variables in a different fashion. 
+environnement variables that are referenced with [`process.env`](https://create-react-app.dev/docs/adding-custom-environment-variables/). You project may be configured to reference environment variables in a different fashion. 
 
 ```
 const webIntegrationConfig = {
@@ -38,7 +38,7 @@ const webIntegrationConfig = {
 };
 ```
 
-**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production. If you choose to rely on the default API keys set your config object to [`{}`](/src/App.tsx#L57):
+**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production. If you choose to rely on the default API keys set your config object to [`{}`](/src/App.tsx#L50):
 
 ```
 const webIntegrationConfig = {};
