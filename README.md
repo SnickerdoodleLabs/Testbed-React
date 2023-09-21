@@ -35,10 +35,14 @@ const webIntegrationConfig = {
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
   poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
-}
+};
 ```
 
-**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production.
+**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production. If you choose to rely on the default API keys set your config object to `{}`:
+
+```
+const webIntegrationConfig = {};
+```
 
 ## 3. Import and Initialize Snickerdoodle Analytics
 
