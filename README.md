@@ -38,7 +38,7 @@ const webIntegrationConfig = {
 };
 ```
 
-**Note**: You do not need to specifiy your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production. If you choose to rely on the default API keys set your config object to [`{}`](/src/App.tsx#L50):
+**Note**: You do not need to specify your own API keys. Snickerdoodle's `web-integration` analytics package comes with default API keys. The default keys may be rate limited, however, and this may affect your performance. Snickerdoodle recommends all integrators acquire their own keys before deploying to production. If you choose to rely on the default API keys set your config object to [`{}`](/src/App.tsx#L50):
 
 ```
 const webIntegrationConfig = {};
