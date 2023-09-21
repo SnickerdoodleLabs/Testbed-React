@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.e43963cb.js",
+    "main.js": "/static/js/main.200ab334.js",
     "static/js/858.822ea537.chunk.js": "/static/js/858.822ea537.chunk.js",
     "static/js/631.1dfb4579.chunk.js": "/static/js/631.1dfb4579.chunk.js",
     "static/js/820.f2fa108e.chunk.js": "/static/js/820.f2fa108e.chunk.js",
@@ -12,7 +12,7 @@
     "static/media/snickerdoodle_logo.png": "/static/media/snickerdoodle_logo.27f3838debb33a1fb7c2.png",
     "index.html": "/index.html",
     "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.e43963cb.js.map": "/static/js/main.e43963cb.js.map",
+    "main.200ab334.js.map": "/static/js/main.200ab334.js.map",
     "858.822ea537.chunk.js.map": "/static/js/858.822ea537.chunk.js.map",
     "631.1dfb4579.chunk.js.map": "/static/js/631.1dfb4579.chunk.js.map",
     "820.f2fa108e.chunk.js.map": "/static/js/820.f2fa108e.chunk.js.map",
@@ -23,6 +23,6 @@
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.e43963cb.js"
+    "static/js/main.200ab334.js"
   ]
 }
