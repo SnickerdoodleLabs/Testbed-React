@@ -52,13 +52,19 @@ if (!process.env.REACT_APP_INFURA_API_KEY) {
   );
 }
 
+// if you choose to rely on default API keys, use this config instead. 
+/*
+const webIntegrationConfig = {};
+*/
+
 const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
-  poapApiKey: process.env.REACT_APP_POAP_API_KEY,
+  poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
 };
 // -------------------------------------------------------------------------------------
+
 
 function App() {
   return (
