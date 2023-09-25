@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.200ab334.js",
+    "main.js": "/static/js/main.7ad641a7.js",
     "static/js/858.822ea537.chunk.js": "/static/js/858.822ea537.chunk.js",
-    "static/js/631.1dfb4579.chunk.js": "/static/js/631.1dfb4579.chunk.js",
+    "static/js/631.6a5a9706.chunk.js": "/static/js/631.6a5a9706.chunk.js",
     "static/js/820.f2fa108e.chunk.js": "/static/js/820.f2fa108e.chunk.js",
     "static/js/787.081fdbd0.chunk.js": "/static/js/787.081fdbd0.chunk.js",
     "static/js/774.4503643a.chunk.js": "/static/js/774.4503643a.chunk.js",
     "static/js/54.83438b47.chunk.js": "/static/js/54.83438b47.chunk.js",
-    "static/js/851.e7c72a78.chunk.js": "/static/js/851.e7c72a78.chunk.js",
+    "static/js/851.645d4cac.chunk.js": "/static/js/851.645d4cac.chunk.js",
     "static/media/snickerdoodle_logo.png": "/static/media/snickerdoodle_logo.27f3838debb33a1fb7c2.png",
     "index.html": "/index.html",
     "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.200ab334.js.map": "/static/js/main.200ab334.js.map",
+    "main.7ad641a7.js.map": "/static/js/main.7ad641a7.js.map",
     "858.822ea537.chunk.js.map": "/static/js/858.822ea537.chunk.js.map",
-    "631.1dfb4579.chunk.js.map": "/static/js/631.1dfb4579.chunk.js.map",
+    "631.6a5a9706.chunk.js.map": "/static/js/631.6a5a9706.chunk.js.map",
     "820.f2fa108e.chunk.js.map": "/static/js/820.f2fa108e.chunk.js.map",
     "787.081fdbd0.chunk.js.map": "/static/js/787.081fdbd0.chunk.js.map",
     "774.4503643a.chunk.js.map": "/static/js/774.4503643a.chunk.js.map",
     "54.83438b47.chunk.js.map": "/static/js/54.83438b47.chunk.js.map",
-    "851.e7c72a78.chunk.js.map": "/static/js/851.e7c72a78.chunk.js.map"
+    "851.645d4cac.chunk.js.map": "/static/js/851.645d4cac.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.200ab334.js"
+    "static/js/main.7ad641a7.js"
   ]
 }
