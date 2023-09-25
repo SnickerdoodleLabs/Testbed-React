@@ -105,7 +105,7 @@ function AskToSign() {
 
   React.useEffect(() => {
     if (data) {
-      console.log("Full Signature String:" + data);
+      console.log("Full Signature String: " + data);
     }
   }, [data]);
 
