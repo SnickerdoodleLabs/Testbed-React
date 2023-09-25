@@ -103,6 +103,12 @@ function AskToSign() {
     }
   }, [isConnected, ethersSigner]);
 
+  React.useEffect(() => {
+    if (data) {
+      console.log("Full Signature String:" + data);
+    }
+  }, [data]);
+
   if (isConnected) {
     return (
       <div>
