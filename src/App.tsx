@@ -13,6 +13,7 @@ import {
   WagmiConfig,
   useAccount,
   useSignMessage,
+  useSignTypedData,
 } from "wagmi";
 import {
   arbitrum,
@@ -75,23 +76,22 @@ function App() {
             </a>
             <img src={snickerdoodle_logo} className="App-logo" alt="logo" />
             <Web3Button />
-            <AskToSign />
+            <AskToSimpleSign />
+            <AskToSignTypedData />
           </header>
         </div>
       </WagmiConfig>
-
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   );
 }
 
-function AskToSign() {
+function AskToSimpleSign() {
   const ethersSigner = useEthersSigner();
   const { data, isError, isSuccess, signMessage } = useSignMessage({
     message: "Hello Snickerdoodle!",
   });
   const { isConnected } = useAccount();
-  const message = "Sign Message";
 
   React.useEffect(() => {
     if (isConnected && ethersSigner) {
@@ -111,8 +111,8 @@ function AskToSign() {
 
   if (isConnected) {
     return (
-      <div>
-        <button onClick={() => signMessage()}>{message}</button>
+      <>
+        <button className="button-64" onClick={() => signMessage()}>Personal Sign</button>
         {isSuccess && (
           <div>
             Signature:{" "}
@@ -122,7 +122,63 @@ function AskToSign() {
           </div>
         )}
         {isError && <div>Error signing message</div>}
-      </div>
+      </>
+    );
+  } else {
+    return <></>;
+  }
+}
+
+function AskToSignTypedData() {
+  const { isConnected } = useAccount();
+
+  const domain = {
+    name: "Snickerdoodle",
+    version: "1",
+    chainId: 1,
+    verifyingContract: "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+  } as const;
+
+  const types = {
+    Login: [
+      { name: "Contents", type: "string" },
+      { name: "Nonce", type: "uint256" },
+    ],
+  } as const;
+
+  const message = {
+    Contents: "Hello Snickerdoodle!",
+    Nonce: 123,
+  } as const;
+
+  const { data, isError, isLoading, isSuccess, signTypedData } =
+    useSignTypedData({
+      domain,
+      message,
+      primaryType: "Login",
+      types,
+    });
+
+  React.useEffect(() => {
+    if (data) {
+      console.log("Full Signature String: " + data);
+    }
+  }, [data]);
+
+  if (isConnected) {
+    return (
+      <>
+        <button className="button-64" onClick={() => signTypedData()}>Sign Typed Data</button>
+        {isSuccess && (
+          <div>
+            Signature:{" "}
+            {data?.slice(0, 12) +
+              "..." +
+              data?.slice(data.length - 13, data.length - 1)}
+          </div>
+        )}
+        {isError && <div>Error signing message</div>}
+      </>
     );
   } else {
     return <></>;
