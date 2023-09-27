@@ -3,7 +3,6 @@ import {
   ConnectButton,
   getDefaultWallets,
   RainbowKitProvider,
-  useChainModal,
 } from "@rainbow-me/rainbowkit";
 import "reflect-metadata";
 import { SnickerdoodleWebIntegration } from "@snickerdoodlelabs/web-integration";
@@ -154,13 +153,13 @@ function AskToSignTypedData() {
   const types = {
     Login: [
       { name: "Contents", type: "string" },
-      { name: "Nonce", type: "string" },
+      { name: "Nonce", type: "uint256" },
     ],
   } as const;
 
   const message = {
     Contents: "Hello Snickerdoodle!",
-    Nonce: "123",
+    Nonce: BigInt(123),
   } as const;
 
   const { data, isError, isLoading, isSuccess, signTypedData } =
