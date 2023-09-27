@@ -5,6 +5,8 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -60,8 +62,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
 }
 
 .button-64:active,
