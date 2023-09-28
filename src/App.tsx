@@ -4,7 +4,7 @@ import {
   getDefaultWallets,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import "reflect-metadata";
+import { EVMAccountAddress, Signature } from "@snickerdoodlelabs/objects";
 import { SnickerdoodleWebIntegration } from "@snickerdoodlelabs/web-integration";
 import React from "react";
 import {
@@ -57,14 +57,16 @@ const wagmiConfig = createConfig({
 
 // if you choose to rely on default API keys, use this config instead
 
+/*
 const webIntegrationConfig = {};
+*/
 
-/*const webIntegrationConfig = {
+const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
   poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
-};*/
+};
 
 // -------------------------------------------------------------------------------------
 
@@ -141,7 +143,7 @@ function AskToSimpleSign() {
 }
 
 function AskToSignTypedData() {
-  const { isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
 
   const domain = {
     name: "Snickerdoodle",
@@ -155,12 +157,12 @@ function AskToSignTypedData() {
       { name: "Contents", type: "string" },
       { name: "Nonce", type: "uint256" },
     ],
-  } as const;
+  };
 
   const message = {
     Contents: "Hello Snickerdoodle!",
     Nonce: BigInt(123),
-  } as const;
+  };
 
   const { data, isError, isLoading, isSuccess, signTypedData } =
     useSignTypedData({
@@ -169,6 +171,24 @@ function AskToSignTypedData() {
       primaryType: "Login",
       types,
     });
+
+  React.useEffect(() => {
+    if (isConnected && address && domain && types && message && data && 1) {
+      const webIntegration = new SnickerdoodleWebIntegration({}, null);
+      webIntegration.initialize().andThen((proxy) => {
+        console.log("Address:", address);
+        console.log("Proxy:", proxy);
+        return proxy.account.addAccountWithExternalTypedDataSignature(
+          EVMAccountAddress(address),
+          domain,
+          types,
+          message,
+          Signature(data),
+          1,
+        );
+      });
+    }
+  }, [isConnected, address, domain, types, message, data]);
 
   React.useEffect(() => {
     if (data) {
