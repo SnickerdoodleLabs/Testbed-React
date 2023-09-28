@@ -12,15 +12,13 @@ If you want to run this project locally or make your own modification, see [`DEV
  You'll need to add [`@snickerdoodlelabs/web-integration`](https://www.npmjs.com/package/@snickerdoodlelabs/web-integration) to your [dependency](/package.json#L7) list:
 
 ```
-yarn add @snickerdoodlelabs/web-integration reflect-metadata
+yarn add @snickerdoodlelabs/web-integration
 ```
 or if you are using [NPM](https://www.npmjs.com/):
 
 ```
-npm install @snickerdoodlelabs/web-integration reflect-metadata
+npm install @snickerdoodlelabs/web-integration
 ```
-
-You must also add [`reflect-metadata`](/package.json#L21) as well. 
 
 ## 2. Configuration of Web3 Data Providers
 
