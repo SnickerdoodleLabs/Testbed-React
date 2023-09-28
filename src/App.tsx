@@ -57,16 +57,14 @@ const wagmiConfig = createConfig({
 
 // if you choose to rely on default API keys, use this config instead
 
-/*
 const webIntegrationConfig = {};
-*/
 
-const webIntegrationConfig = {
+/*const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
   poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
-};
+};*/
 
 // -------------------------------------------------------------------------------------
 
@@ -86,7 +84,7 @@ function App() {
                 Snickerdoodle Labs React Testbed
               </a>
               <img src={snickerdoodle_logo} className="App-logo" alt="logo" />
-              <ConnectButton />
+              <LetSnickerdoodleSign />
               <AskToSimpleSign />
               <AskToSignTypedData />
             </header>
@@ -97,15 +95,15 @@ function App() {
   );
 }
 
-function AskToSimpleSign() {
+function LetSnickerdoodleSign() {
+  // see /src/ethers.ts for conversion from wagmi signer to ethers signer object
   const ethersSigner = useEthersSigner();
-  const { data, isError, isSuccess, signMessage } = useSignMessage({
-    message: "Hello Snickerdoodle!",
-  });
   const { isConnected } = useAccount();
 
+  // This shows how to authenticate the user's account with an Ethers signer
+  // This option will present the user with a Snickerdoodle controlled personal sign message
   React.useEffect(() => {
-    if (isConnected && ethersSigner) {
+    if (isConnected) {
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
         ethersSigner,
@@ -113,6 +111,38 @@ function AskToSimpleSign() {
       webIntegration.initialize();
     }
   }, [isConnected, ethersSigner]);
+  return <ConnectButton />;
+}
+
+function AskToSimpleSign() {
+  const myMessage: string = "Hello Snickerdoodle!";
+  const { data, isError, isSuccess, signMessage } = useSignMessage({
+    message: myMessage,
+  });
+  const { address, isConnected } = useAccount();
+
+  // This option shows how to authenticate a user account with a custom
+  // personal sign message that your app may already be asking the user to sign
+  React.useEffect(() => {
+    if (isConnected && address && data) {
+      const webIntegration = new SnickerdoodleWebIntegration(
+        webIntegrationConfig,
+      );
+      webIntegration
+        .initialize()
+        .andThen((proxy) => {
+          return proxy.account.addAccountWithExternalSignature(
+            EVMAccountAddress(address),
+            myMessage,
+            Signature(data),
+            1,
+          );
+        })
+        .mapErr((err) => {
+          console.log(err);
+        });
+    }
+  }, [isConnected, address, data]);
 
   React.useEffect(() => {
     if (data) {
@@ -172,21 +202,28 @@ function AskToSignTypedData() {
       types,
     });
 
+  // This option shows how to authenticate a user's account with a Typed Data signature
+  // that your application may already be requiring the user to sign
   React.useEffect(() => {
     if (isConnected && address && domain && types && message && data && 1) {
-      const webIntegration = new SnickerdoodleWebIntegration({}, null);
-      webIntegration.initialize().andThen((proxy) => {
-        console.log("Address:", address);
-        console.log("Proxy:", proxy);
-        return proxy.account.addAccountWithExternalTypedDataSignature(
-          EVMAccountAddress(address),
-          domain,
-          types,
-          message,
-          Signature(data),
-          1,
-        );
-      });
+      const webIntegration = new SnickerdoodleWebIntegration(
+        webIntegrationConfig,
+      );
+      webIntegration
+        .initialize()
+        .andThen((proxy) => {
+          return proxy.account.addAccountWithExternalTypedDataSignature(
+            EVMAccountAddress(address),
+            domain,
+            types,
+            message,
+            Signature(data),
+            1,
+          );
+        })
+        .mapErr((err) => {
+          console.log(err);
+        });
     }
   }, [isConnected, address, domain, types, message, data]);
 
