@@ -117,14 +117,14 @@ function LetSnickerdoodleSign() {
 }
 
 function AskToSimpleSign() {
-  const myMessage: string = "Hello Snickerdoodle!";
+  const myMessage: string = "Hello Snickerdoodle!"; // you app's login message
   const { data, isError, isSuccess, signMessage } = useSignMessage({
     message: myMessage,
   });
   const { address, isConnected } = useAccount();
 
-  // This option shows how to authenticate a user account with a custom
-  // personal sign message that your app may already be asking the user to sign
+  // This option shows how to authenticate a user account with a custom EIP-191
+  // compatible message signature that your app may already be asking the user to sign
   React.useEffect(() => {
     if (isConnected && address && data) {
       const webIntegration = new SnickerdoodleWebIntegration(
@@ -146,7 +146,7 @@ function AskToSimpleSign() {
     }
   }, [isConnected, address, data]);
 
-  React.useEffect(() => {
+  React.useEffect(() => { 
     if (data) {
       console.log("Full Signature String: " + data);
     }
@@ -177,21 +177,21 @@ function AskToSimpleSign() {
 function AskToSignTypedData() {
   const { address, isConnected } = useAccount();
 
-  const domain = {
+  const domain = { // your app's EIP-712 domain
     name: "Snickerdoodle",
     version: "1",
     chainId: 1,
     verifyingContract: "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
   } as const;
 
-  const types = {
+  const types = { // your app's EIP-712 custom types
     Login: [
       { name: "Contents", type: "string" },
       { name: "Nonce", type: "uint256" },
     ],
   };
 
-  const message = {
+  const message = { // your app's EIP-712 custom typed message
     Contents: "Hello Snickerdoodle!",
     Nonce: BigInt(123),
   };
@@ -204,7 +204,7 @@ function AskToSignTypedData() {
       types,
     });
 
-  // This option shows how to authenticate a user's account with a Typed Data signature
+  // This option shows how to authenticate a user's account with a EIP-712 signature
   // that your application may already be requiring the user to sign
   React.useEffect(() => {
     if (isConnected && address && domain && types && message && data && 1) {
