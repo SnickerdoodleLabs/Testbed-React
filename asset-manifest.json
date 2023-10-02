@@ -1,7 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.0c8e1419.css",
-    "main.js": "/static/js/main.9529be30.js",
+    "main.js": "/static/js/main.87dd3652.js",
+    "static/js/458.e3213f2d.chunk.js": "/static/js/458.e3213f2d.chunk.js",
     "static/js/858.f42bab8d.chunk.js": "/static/js/858.f42bab8d.chunk.js",
     "static/js/479.0df90ebc.chunk.js": "/static/js/479.0df90ebc.chunk.js",
     "static/js/128.55d1f708.chunk.js": "/static/js/128.55d1f708.chunk.js",
@@ -45,7 +46,8 @@
     "static/media/snickerdoodle_logo.png": "/static/media/snickerdoodle_logo.27f3838debb33a1fb7c2.png",
     "index.html": "/index.html",
     "main.0c8e1419.css.map": "/static/css/main.0c8e1419.css.map",
-    "main.9529be30.js.map": "/static/js/main.9529be30.js.map",
+    "main.87dd3652.js.map": "/static/js/main.87dd3652.js.map",
+    "458.e3213f2d.chunk.js.map": "/static/js/458.e3213f2d.chunk.js.map",
     "858.f42bab8d.chunk.js.map": "/static/js/858.f42bab8d.chunk.js.map",
     "479.0df90ebc.chunk.js.map": "/static/js/479.0df90ebc.chunk.js.map",
     "128.55d1f708.chunk.js.map": "/static/js/128.55d1f708.chunk.js.map",
@@ -88,6 +90,6 @@
   },
   "entrypoints": [
     "static/css/main.0c8e1419.css",
-    "static/js/main.9529be30.js"
+    "static/js/main.87dd3652.js"
   ]
 }
