@@ -6,7 +6,7 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { EVMAccountAddress, Signature } from "@snickerdoodlelabs/objects";
 import { SnickerdoodleWebIntegration } from "@snickerdoodlelabs/web-integration";
-import React from "react";
+import React, { MutableRefObject, useState } from "react";
 import {
   configureChains,
   createConfig,
@@ -57,20 +57,23 @@ const wagmiConfig = createConfig({
 
 // if you choose to rely on default API keys, use this config instead
 
-/*
 const webIntegrationConfig = {};
-*/
 
+/*
 const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
   poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
 };
+*/
 
 // -------------------------------------------------------------------------------------
 
 function App() {
+  const isSnickerDoodleInitializedRef: MutableRefObject<boolean> =
+    React.useRef(false);
+
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
@@ -86,9 +89,10 @@ function App() {
                 Snickerdoodle Labs React Testbed
               </a>
               <img src={snickerdoodle_logo} className="App-logo" alt="logo" />
-              <LetSnickerdoodleSign />
-              <AskToSimpleSign />
-              <AskToSignTypedData />
+              <ConnectButton />
+              <LetSnickerdoodleSign isInit={isSnickerDoodleInitializedRef} />
+              <AskToSimpleSign isInit={isSnickerDoodleInitializedRef} />
+              <AskToSignTypedData isInit={isSnickerDoodleInitializedRef} />
             </header>
           </div>
         </RainbowKitProvider>
@@ -97,26 +101,45 @@ function App() {
   );
 }
 
-function LetSnickerdoodleSign() {
+function LetSnickerdoodleSign(props: { isInit: MutableRefObject<boolean> }) {
   // see /src/ethers.ts for conversion from wagmi signer to ethers signer object
   const ethersSigner = useEthersSigner();
   const { isConnected } = useAccount();
+  const [showButton, setShowButton] = useState<boolean>(true);
+
+  React.useEffect(() => {
+    if (props.isInit.current) {
+      setShowButton(false);
+    }
+  }, [props.isInit]);
 
   // This shows how to authenticate the user's account with an Ethers signer
   // This option will present the user with a Snickerdoodle controlled personal sign message
-  React.useEffect(() => {
-    if (isConnected) {
+  function handleOnClick() {
+    // don't call this logic if the integration has been initialized already in another component
+    if (!props.isInit.current) {
+      props.isInit.current = true;
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
         ethersSigner,
       );
       webIntegration.initialize();
+      setShowButton(false);
     }
-  }, [isConnected, ethersSigner]);
-  return <ConnectButton />;
+  }
+
+  if (isConnected && ethersSigner && showButton) {
+    return (
+      <button className="button-64" onClick={handleOnClick}>
+        Let Snickerdoodle Sign
+      </button>
+    );
+  } else {
+    return <></>;
+  }
 }
 
-function AskToSimpleSign() {
+function AskToSimpleSign(props: { isInit: MutableRefObject<boolean> }) {
   const myMessage: string = "Hello Snickerdoodle!"; // you app's login message
   const { data, isError, isSuccess, signMessage } = useSignMessage({
     message: myMessage,
@@ -126,7 +149,8 @@ function AskToSimpleSign() {
   // This option shows how to authenticate a user account with a custom EIP-191
   // compatible message signature that your app may already be asking the user to sign
   React.useEffect(() => {
-    if (isConnected && address && data) {
+    if (isConnected && address && data && !props.isInit.current) {
+      props.isInit.current = true;
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
       );
@@ -146,7 +170,7 @@ function AskToSimpleSign() {
     }
   }, [isConnected, address, data]);
 
-  React.useEffect(() => { 
+  React.useEffect(() => {
     if (data) {
       console.log("Full Signature String: " + data);
     }
@@ -174,24 +198,27 @@ function AskToSimpleSign() {
   }
 }
 
-function AskToSignTypedData() {
+function AskToSignTypedData(props: { isInit: MutableRefObject<boolean> }) {
   const { address, isConnected } = useAccount();
 
-  const domain = { // your app's EIP-712 domain
+  const domain = {
+    // your app's EIP-712 domain
     name: "Snickerdoodle",
     version: "1",
     chainId: 1,
     verifyingContract: "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
   } as const;
 
-  const types = { // your app's EIP-712 custom types
+  const types = {
+    // your app's EIP-712 custom types
     Login: [
       { name: "Contents", type: "string" },
       { name: "Nonce", type: "uint256" },
     ],
   };
 
-  const message = { // your app's EIP-712 custom typed message
+  const message = {
+    // your app's EIP-712 custom typed message
     Contents: "Hello Snickerdoodle!",
     Nonce: BigInt(123),
   };
@@ -207,7 +234,16 @@ function AskToSignTypedData() {
   // This option shows how to authenticate a user's account with a EIP-712 signature
   // that your application may already be requiring the user to sign
   React.useEffect(() => {
-    if (isConnected && address && domain && types && message && data && 1) {
+    if (
+      isConnected &&
+      address &&
+      domain &&
+      types &&
+      message &&
+      data &&
+      !props.isInit.current
+    ) {
+      props.isInit.current = true;
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
       );
