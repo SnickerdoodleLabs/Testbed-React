@@ -70,7 +70,7 @@ Snickerdoodle analytics offers 3 equivalent methods to authenticate a user's wal
 ### Snickerdoodle-managed EIP-191 Personal Sign Authentication
 
 If your dApp does not already ask a user for a login signature, allowing the Snickerdoodle analytics package to prompt the user for a simple login signature
-is likely the simplest route. See the [`LetSnickerdoodleSign()`](/src/App.tsx#L100) component. The relevant code block is the following:
+is likely the simplest route. See the [`LetSnickerdoodleSign()`](/src/App.tsx#L103) component. The relevant code block is the following:
 
 ```
 const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig, ethersSigner);
@@ -83,7 +83,7 @@ add [`ethers.ts`](/src/ethers.ts) to you project and [import](/src/App.tsx#L28) 
 ### Application-managed EIP-191 Personal Sign Authentication
 
 If your dApp is already prompting the user to perform a simple signature of a login message, you can use the result of that operation to authenticate the user's
-wallet against their decentralized profile. See the [`AskToSimpleSign()`](/src/App.tsx#L119) component. The relevant code block is the following:
+wallet against their decentralized profile. See the [`AskToSimpleSign()`](/src/App.tsx#L138) component. The relevant code block is the following:
 
 ```
 const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig,);
@@ -99,7 +99,7 @@ webIntegration.initialize().andThen((proxy) => {
 
 ### Application-managed EIP-712 Sign Typed Data Authentication
 
-If you dApp is already prompting the user to perform a signature of a typed data payload that is [EIP-712](https://eips.ethereum.org/EIPS/eip-712) compatible, you can use the result of that operation to authenticate the user's wallet againt their decentralized profile. See the [`AskToSignTypedData()`](/src/App.tsx#L177) component. The relevant code block is the following:
+If you dApp is already prompting the user to perform a signature of a typed data payload that is [EIP-712](https://eips.ethereum.org/EIPS/eip-712) compatible, you can use the result of that operation to authenticate the user's wallet against their decentralized user profile. See the [`AskToSignTypedData()`](/src/App.tsx#L204) component. The relevant code block is the following:
 
 ```
 const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig,);

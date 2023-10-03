@@ -6,7 +6,7 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { EVMAccountAddress, Signature } from "@snickerdoodlelabs/objects";
 import { SnickerdoodleWebIntegration } from "@snickerdoodlelabs/web-integration";
-import React, { MutableRefObject, useState } from "react";
+import React, { useState } from "react";
 import {
   configureChains,
   createConfig,
@@ -57,22 +57,21 @@ const wagmiConfig = createConfig({
 
 // if you choose to rely on default API keys, use this config instead
 
-const webIntegrationConfig = {};
-
 /*
+const webIntegrationConfig = {};
+*/
+
 const webIntegrationConfig = {
   primaryInfuraKey: process.env.REACT_APP_INFURA_API_KEY!,
   ankrApiKey: process.env.REACT_APP_ANKR_API_KEY!,
   covalentApiKey: process.env.REACT_APP_COVALENT_API_KEY!,
   poapApiKey: process.env.REACT_APP_POAP_API_KEY!,
 };
-*/
 
 // -------------------------------------------------------------------------------------
 
 function App() {
-  const isSnickerDoodleInitializedRef: MutableRefObject<boolean> =
-    React.useRef(false);
+  const [isInit, setIsInit] = useState<boolean>(false);
 
   return (
     <>
@@ -90,9 +89,9 @@ function App() {
               </a>
               <img src={snickerdoodle_logo} className="App-logo" alt="logo" />
               <ConnectButton />
-              <LetSnickerdoodleSign isInit={isSnickerDoodleInitializedRef} />
-              <AskToSimpleSign isInit={isSnickerDoodleInitializedRef} />
-              <AskToSignTypedData isInit={isSnickerDoodleInitializedRef} />
+              <LetSnickerdoodleSign isInit={isInit} setIsInit={setIsInit} />
+              <AskToSimpleSign isInit={isInit} setIsInit={setIsInit} />
+              <AskToSignTypedData isInit={isInit} setIsInit={setIsInit} />
             </header>
           </div>
         </RainbowKitProvider>
@@ -101,45 +100,45 @@ function App() {
   );
 }
 
-function LetSnickerdoodleSign(props: { isInit: MutableRefObject<boolean> }) {
+function LetSnickerdoodleSign(props: {
+  isInit: boolean;
+  setIsInit: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   // see /src/ethers.ts for conversion from wagmi signer to ethers signer object
   const ethersSigner = useEthersSigner();
   const { isConnected } = useAccount();
-  const [showButton, setShowButton] = useState<boolean>(true);
-
-  React.useEffect(() => {
-    if (props.isInit.current) {
-      setShowButton(false);
-    }
-  }, [props.isInit]);
 
   // This shows how to authenticate the user's account with an Ethers signer
   // This option will present the user with a Snickerdoodle controlled personal sign message
   function handleOnClick() {
     // don't call this logic if the integration has been initialized already in another component
-    if (!props.isInit.current) {
-      props.isInit.current = true;
+    if (!props.isInit) {
+      props.setIsInit(true);
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
         ethersSigner,
       );
       webIntegration.initialize();
-      setShowButton(false);
     }
   }
 
-  if (isConnected && ethersSigner && showButton) {
+  if (isConnected && ethersSigner && !props.isInit) {
     return (
       <button className="button-64" onClick={handleOnClick}>
         Let Snickerdoodle Sign
       </button>
     );
+  } else if (isConnected && props.isInit) {
+    return <div>Snickerdoodle Initialized!</div>;
   } else {
     return <></>;
   }
 }
 
-function AskToSimpleSign(props: { isInit: MutableRefObject<boolean> }) {
+function AskToSimpleSign(props: {
+  isInit: boolean;
+  setIsInit: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const myMessage: string = "Hello Snickerdoodle!"; // you app's login message
   const { data, isError, isSuccess, signMessage } = useSignMessage({
     message: myMessage,
@@ -149,8 +148,9 @@ function AskToSimpleSign(props: { isInit: MutableRefObject<boolean> }) {
   // This option shows how to authenticate a user account with a custom EIP-191
   // compatible message signature that your app may already be asking the user to sign
   React.useEffect(() => {
-    if (isConnected && address && data && !props.isInit.current) {
-      props.isInit.current = true;
+    if (isConnected && address && data && !props.isInit) {
+      // don't call this logic if the integration has been initialized already in another component
+      props.setIsInit(true);
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
       );
@@ -176,12 +176,15 @@ function AskToSimpleSign(props: { isInit: MutableRefObject<boolean> }) {
     }
   }, [data]);
 
-  if (isConnected) {
+  if (isConnected && !props.isInit) {
+    return (
+      <button className="button-64" onClick={() => signMessage()}>
+        Personal Sign
+      </button>
+    );
+  } else if (isConnected && props.isInit) {
     return (
       <>
-        <button className="button-64" onClick={() => signMessage()}>
-          Personal Sign
-        </button>
         {isSuccess && (
           <div>
             Signature:{" "}
@@ -198,7 +201,10 @@ function AskToSimpleSign(props: { isInit: MutableRefObject<boolean> }) {
   }
 }
 
-function AskToSignTypedData(props: { isInit: MutableRefObject<boolean> }) {
+function AskToSignTypedData(props: {
+  isInit: boolean;
+  setIsInit: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const { address, isConnected } = useAccount();
 
   const domain = {
@@ -241,9 +247,10 @@ function AskToSignTypedData(props: { isInit: MutableRefObject<boolean> }) {
       types &&
       message &&
       data &&
-      !props.isInit.current
+      !props.isInit
     ) {
-      props.isInit.current = true;
+      // don't call this logic if the integration has been initialized already in another component
+      props.setIsInit(true);
       const webIntegration = new SnickerdoodleWebIntegration(
         webIntegrationConfig,
       );
@@ -271,12 +278,15 @@ function AskToSignTypedData(props: { isInit: MutableRefObject<boolean> }) {
     }
   }, [data]);
 
-  if (isConnected) {
+  if (isConnected && !props.isInit) {
+    return (
+      <button className="button-64" onClick={() => signTypedData()}>
+        Sign Typed Data
+      </button>
+    );
+  } else if (isConnected && props.isInit) {
     return (
       <>
-        <button className="button-64" onClick={() => signTypedData()}>
-          Sign Typed Data
-        </button>
         {isSuccess && (
           <div>
             Signature:{" "}
