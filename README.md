@@ -1,6 +1,6 @@
 [![Snickerdoodle Protocol](/snickerdoodle_horizontal_notab.png)](https://snickerdoodle.com)
 
-# Snickerdoodle Testbed for React App Web Integration Package
+# Web Integration Testbed for React
 
 This is a minimal [React](https://react.dev/) application for demonstrating the [Snickerdoodle](https://snickerdoodle.com) web-native analytics package. It is meant to be an example guide for adding Snickerdoodle analytics to your own React-based [dApp](https://ethereum.org/en/developers/docs/dapps/). 
 
