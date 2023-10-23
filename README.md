@@ -97,6 +97,9 @@ webIntegration.initialize().andThen((proxy) => {
   }).mapErr((err) => {console.log(err);});
 ```
 
+> [!IMPORTANT]
+> When calling `new` on the `SnickerdooodleWebIntegration` object, leave the second argument empty, otherwise the end user will be prompted with a Snickerdoodle login message. 
+
 ### Application-managed EIP-712 Sign Typed Data Authentication
 
 If you dApp is already prompting the user to perform a signature of a typed data payload that is [EIP-712](https://eips.ethereum.org/EIPS/eip-712) compatible, you can use the result of that operation to authenticate the user's wallet against their decentralized user profile. See the [`AskToSignTypedData()`](/src/App.tsx#L204) component. The relevant code block is the following:
@@ -116,6 +119,9 @@ webIntegration.initialize().andThen((proxy) => {
     console.log(err);
   });
 ```
+
+> [!IMPORTANT]
+> When calling `new` on the `SnickerdooodleWebIntegration` object, leave the second argument empty, otherwise the end user will be prompted with a Snickerdoodle login message. 
 
 ## 4.  Add a TXT Record to Your Application's DNS Settings
 
