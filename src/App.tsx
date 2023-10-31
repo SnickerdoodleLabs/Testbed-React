@@ -4,7 +4,7 @@ import {
   getDefaultWallets,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import { EVMAccountAddress, Signature } from "@snickerdoodlelabs/objects";
+import { EVMAccountAddress, Signature, EChain } from "@snickerdoodlelabs/objects";
 import { SnickerdoodleWebIntegration } from "@snickerdoodlelabs/web-integration";
 import React, { useState } from "react";
 import {
@@ -161,7 +161,7 @@ function AskToSimpleSign(props: {
             EVMAccountAddress(address),
             myMessage,
             Signature(data),
-            1,
+            EChain.EthereumMainnet,
           );
         })
         .mapErr((err) => {
@@ -263,7 +263,7 @@ function AskToSignTypedData(props: {
             types,
             message,
             Signature(data),
-            1,
+            EChain.EthereumMainnet,
           );
         })
         .mapErr((err) => {
