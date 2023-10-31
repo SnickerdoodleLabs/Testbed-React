@@ -54,10 +54,10 @@ import { SnickerdoodleWebIntegration } from '@snickerdoodlelabs/web-integration'
 Additionally, if you choose one of the signature-based authentication methods in step 4, you must also import some [objects](/src/App.tsx#L7):
 
 ```typescript
-import { EVMAccountAddress, Signature } from "@snickerdoodlelabs/objects";
+import { EVMAccountAddress, Signature, EChain } from "@snickerdoodlelabs/objects";
 ```
 
-**Note** You do not need to import from `@snickerdoodlelabs/objects` if you simply use the default initialization method described in step 4. 
+**Note** You do not need to import from `@snickerdoodlelabs/objects` if you simply use the default initialization method described in [section 4](#4-choose-your-preferred-authentication-method). 
 
 ## 4. Choose Your Preferred Authentication Method
 
@@ -134,18 +134,14 @@ Snickerdoodle offers support for non-EVM chains through the `addAccountWithExter
 activate the analytics package by passing a Solana signature in a similar fashion:
 
 ```typescript
-import { EVMAccountAddress, Signature, EChain } from "@snickerdoodlelabs/objects";
+import { SolanaAccountAddress, Signature, EChain } from "@snickerdoodlelabs/objects";
 const webIntegration = new SnickerdoodleWebIntegration(webIntegrationConfig,);
 webIntegration.initialize().andThen((proxy) => {
-    return proxy.account.addAccountWithExternalTypedDataSignature(
-      EVMAccountAddress(address),
-      domain,
-      types,
-      message,
-      Signature(data), // collect signature data from a user's Solana-compatible wallet
-      EChain.Solana, // Solana is given chainid -1 out of convention in Snickerdoodle's enumerable types
+    return proxy.account.addAccountWithExternalSignature(
+      SolanaAccountAddress(address),
+      myMessage,
+      Signature(data),
+      EChain.Solana, // Solana's chain id is -1 by convention in Snickerdoodle's enum type
     );
-  }).mapErr((err) => {
-    console.log(err);
-  });
+  }).mapErr((err) => {console.log(err);});
 ```
